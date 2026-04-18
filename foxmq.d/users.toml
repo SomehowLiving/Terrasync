@@ -1,0 +1,2 @@
+[users.swarm]
+password-hash = "$argon2id$v=19$m=19456,t=2,p=1$Doa9XsCODSe4RrDL9knbtg$gBf9HEFHC4zdQc3xlg+MJ5fyKsTYlqNK/uvwoF69608"

@@ -1,0 +1,10 @@
+# key_0.pem
+[[addresses]]
+key = """
+-----BEGIN PUBLIC KEY-----
+MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEYi0/RpSDSvmxZR1ZJg6inSAqbAcm
+AuGmCf2++RXhSRmKiiMaK/InFShQKyBirftyG7F1oAHh7GVdSbHPjP6q6Q==
+-----END PUBLIC KEY-----
+"""
+addr = "127.0.0.1:19793"
+

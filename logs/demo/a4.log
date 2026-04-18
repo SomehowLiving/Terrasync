@@ -1,0 +1,205 @@
+2026-04-18T17:22:49.006677Z  INFO agent started with FoxMQ transport agent=a4 brokers=127.0.0.1:1883
+2026-04-18T17:22:49.013441Z  INFO round_start round=1184355312
+2026-04-18T17:22:49.014723Z  INFO claim publish region=ac72368a x=0 y=0 priority=448 round=1184355312
+2026-04-18T17:22:49.048449Z  INFO connecting to FoxMQ broker broker=127.0.0.1:1883
+2026-04-18T17:22:49.125870Z  INFO connected to broker broker=127.0.0.1:1883
+2026-04-18T17:22:49.135451Z  INFO claim received claim_id=a1:ac72368a586a18c19088393573ce03074b8e8a4d8c21add8729af1890a407e52:1184355312 region=ac72368a round=1184355312 from=a1 priority=90
+2026-04-18T17:22:49.135579Z  INFO claim received claim_id=a2:ac72368a586a18c19088393573ce03074b8e8a4d8c21add8729af1890a407e52:1184355312 region=ac72368a round=1184355312 from=a2 priority=112
+2026-04-18T17:22:49.135761Z  INFO claim received claim_id=a3:ac72368a586a18c19088393573ce03074b8e8a4d8c21add8729af1890a407e52:1184355312 region=ac72368a round=1184355312 from=a3 priority=976
+2026-04-18T17:22:49.140543Z  INFO claim received claim_id=a5:ac72368a586a18c19088393573ce03074b8e8a4d8c21add8729af1890a407e52:1184355312 region=ac72368a round=1184355312 from=a5 priority=167
+2026-04-18T17:22:49.609375Z  INFO round_start round=1184355313
+2026-04-18T17:22:49.609555Z  INFO round_close region=ac72368a round=1184355312 claims=5
+2026-04-18T17:22:49.609634Z  INFO claim publish region=ac72368a x=0 y=0 priority=577 round=1184355313
+2026-04-18T17:22:49.609668Z  INFO final_claim_set region=ac72368a round=1184355312 claims=a3:ac72368a586a18c19088393573ce03074b8e8a4d8c21add8729af1890a407e52:1184355312,a4:ac72368a586a18c19088393573ce03074b8e8a4d8c21add8729af1890a407e52:1184355312,a5:ac72368a586a18c19088393573ce03074b8e8a4d8c21add8729af1890a407e52:1184355312,a2:ac72368a586a18c19088393573ce03074b8e8a4d8c21add8729af1890a407e52:1184355312,a1:ac72368a586a18c19088393573ce03074b8e8a4d8c21add8729af1890a407e52:1184355312
+2026-04-18T17:22:49.609723Z  INFO winner region=ac72368a round=1184355312 order=a3:976 > a4:448 > a5:167 > a2:112 > a1:90 winner=a3
+2026-04-18T17:22:49.609774Z  INFO claim lost, rerouting immediately region=ac72368a winner=a3
+2026-04-18T17:22:49.611161Z  INFO claim received claim_id=a3:ac72368a586a18c19088393573ce03074b8e8a4d8c21add8729af1890a407e52:1184355313 region=ac72368a round=1184355313 from=a3 priority=540
+2026-04-18T17:22:49.611219Z  INFO claim received claim_id=a2:ac72368a586a18c19088393573ce03074b8e8a4d8c21add8729af1890a407e52:1184355313 region=ac72368a round=1184355313 from=a2 priority=344
+2026-04-18T17:22:49.613715Z  INFO ownership update region=ac72368a owner=a3 round=1184355312 digest=89c8ac35 from=a2
+2026-04-18T17:22:49.613760Z  INFO consistent ownership digest across agents region=ac72368a round=1184355312 participants=2 digest=89c8ac35
+2026-04-18T17:22:49.613792Z  INFO vertex state agreement region=ac72368a round=1184355312 participants=2 digest=89c8ac35
+2026-04-18T17:22:49.613820Z  INFO claim received claim_id=a5:ef134f2a180ba05de91ab32d2976f51de13b68d823ea784171b1b0dafee67be4:1184355313 region=ef134f2a round=1184355313 from=a5 priority=153
+2026-04-18T17:22:49.614902Z  INFO ownership update region=ac72368a owner=a3 round=1184355312 digest=89c8ac35 from=a1
+2026-04-18T17:22:49.614970Z  INFO consistent ownership digest across agents region=ac72368a round=1184355312 participants=3 digest=89c8ac35
+2026-04-18T17:22:49.615221Z  INFO vertex state agreement region=ac72368a round=1184355312 participants=3 digest=89c8ac35
+2026-04-18T17:22:49.615268Z  INFO claim received claim_id=a1:ef134f2a180ba05de91ab32d2976f51de13b68d823ea784171b1b0dafee67be4:1184355313 region=ef134f2a round=1184355313 from=a1 priority=419
+2026-04-18T17:22:49.910189Z  INFO claim publish region=ef134f2a x=0 y=1 priority=327 round=1184355313
+2026-04-18T17:22:49.912981Z  INFO claim received claim_id=a2:ef134f2a180ba05de91ab32d2976f51de13b68d823ea784171b1b0dafee67be4:1184355313 region=ef134f2a round=1184355313 from=a2 priority=991
+2026-04-18T17:22:51.109498Z  INFO claim publish region=ef134f2a x=0 y=1 priority=488 round=1184355314
+2026-04-18T17:22:51.109572Z  INFO round_start round=1184355314
+2026-04-18T17:22:51.109681Z  INFO round_close region=ac72368a round=1184355313 claims=3
+2026-04-18T17:22:51.109784Z  INFO final_claim_set region=ac72368a round=1184355313 claims=a4:ac72368a586a18c19088393573ce03074b8e8a4d8c21add8729af1890a407e52:1184355313,a3:ac72368a586a18c19088393573ce03074b8e8a4d8c21add8729af1890a407e52:1184355313,a2:ac72368a586a18c19088393573ce03074b8e8a4d8c21add8729af1890a407e52:1184355313
+2026-04-18T17:22:51.109813Z  INFO winner region=ac72368a round=1184355313 order=a4:577 > a3:540 > a2:344 winner=a4
+2026-04-18T17:22:51.109857Z  INFO claim won, proceeding to explore region=ac72368a
+2026-04-18T17:22:51.109928Z  INFO round_close region=ef134f2a round=1184355313 claims=4
+2026-04-18T17:22:51.109989Z  INFO final_claim_set region=ef134f2a round=1184355313 claims=a2:ef134f2a180ba05de91ab32d2976f51de13b68d823ea784171b1b0dafee67be4:1184355313,a1:ef134f2a180ba05de91ab32d2976f51de13b68d823ea784171b1b0dafee67be4:1184355313,a4:ef134f2a180ba05de91ab32d2976f51de13b68d823ea784171b1b0dafee67be4:1184355313,a5:ef134f2a180ba05de91ab32d2976f51de13b68d823ea784171b1b0dafee67be4:1184355313
+2026-04-18T17:22:51.110006Z  INFO winner region=ef134f2a round=1184355313 order=a2:991 > a1:419 > a4:327 > a5:153 winner=a2
+2026-04-18T17:22:51.110033Z  INFO claim lost, rerouting immediately region=ef134f2a winner=a2
+2026-04-18T17:22:51.110659Z  INFO claim received claim_id=a3:ac72368a586a18c19088393573ce03074b8e8a4d8c21add8729af1890a407e52:1184355314 region=ac72368a round=1184355314 from=a3 priority=859
+2026-04-18T17:22:51.112881Z  INFO claim received claim_id=a2:ef134f2a180ba05de91ab32d2976f51de13b68d823ea784171b1b0dafee67be4:1184355314 region=ef134f2a round=1184355314 from=a2 priority=114
+2026-04-18T17:22:51.112958Z  INFO consistent ownership digest across agents region=ac72368a round=1184355313 participants=2 digest=f0124389
+2026-04-18T17:22:51.112987Z  INFO vertex state agreement region=ac72368a round=1184355313 participants=2 digest=f0124389
+2026-04-18T17:22:51.113016Z  INFO consistent ownership digest across agents region=ef134f2a round=1184355313 participants=2 digest=a9c122c2
+2026-04-18T17:22:51.117233Z  INFO vertex state agreement region=ef134f2a round=1184355313 participants=2 digest=a9c122c2
+2026-04-18T17:22:51.118367Z  INFO claim received claim_id=a5:ef134f2a180ba05de91ab32d2976f51de13b68d823ea784171b1b0dafee67be4:1184355314 region=ef134f2a round=1184355314 from=a5 priority=268
+2026-04-18T17:22:51.118482Z  INFO ownership update region=ac72368a owner=a4 round=1184355313 digest=f0124389 from=a5
+2026-04-18T17:22:51.118521Z  INFO consistent ownership digest across agents region=ac72368a round=1184355313 participants=3 digest=f0124389
+2026-04-18T17:22:51.118561Z  INFO vertex state agreement region=ac72368a round=1184355313 participants=3 digest=f0124389
+2026-04-18T17:22:51.118596Z  INFO ownership update region=ef134f2a owner=a2 round=1184355313 digest=a9c122c2 from=a5
+2026-04-18T17:22:51.118617Z  INFO consistent ownership digest across agents region=ef134f2a round=1184355313 participants=3 digest=a9c122c2
+2026-04-18T17:22:51.118663Z  INFO vertex state agreement region=ef134f2a round=1184355313 participants=3 digest=a9c122c2
+2026-04-18T17:22:51.118707Z  INFO consistent ownership digest across agents region=ac72368a round=1184355313 participants=4 digest=f0124389
+2026-04-18T17:22:51.118745Z  INFO vertex state agreement region=ac72368a round=1184355313 participants=4 digest=f0124389
+2026-04-18T17:22:51.118825Z  INFO consistent ownership digest across agents region=ef134f2a round=1184355313 participants=4 digest=a9c122c2
+2026-04-18T17:22:51.118886Z  INFO vertex state agreement region=ef134f2a round=1184355313 participants=4 digest=a9c122c2
+2026-04-18T17:22:51.118936Z  INFO claim received claim_id=a1:9328a9dc66caf8eb870451eb1879730a4281b7693a3dcb87cb2d58d7cfb5bad3:1184355314 region=9328a9dc round=1184355314 from=a1 priority=876
+2026-04-18T17:22:51.119211Z  INFO ownership update region=ac72368a owner=a4 round=1184355313 digest=f0124389 from=a1
+2026-04-18T17:22:51.119306Z  INFO consistent ownership digest across agents region=ac72368a round=1184355313 participants=5 digest=f0124389
+2026-04-18T17:22:51.119400Z  INFO vertex state agreement region=ac72368a round=1184355313 participants=5 digest=f0124389
+2026-04-18T17:22:51.119480Z  INFO ownership update region=ef134f2a owner=a2 round=1184355313 digest=a9c122c2 from=a1
+2026-04-18T17:22:51.119527Z  INFO consistent ownership digest across agents region=ef134f2a round=1184355313 participants=5 digest=a9c122c2
+2026-04-18T17:22:51.119602Z  INFO vertex state agreement region=ef134f2a round=1184355313 participants=5 digest=a9c122c2
+2026-04-18T17:22:51.409632Z  INFO claim publish region=ac72368a x=0 y=0 priority=882 round=1184355314
+2026-04-18T17:22:51.410519Z  INFO claim received claim_id=a3:9328a9dc66caf8eb870451eb1879730a4281b7693a3dcb87cb2d58d7cfb5bad3:1184355314 region=9328a9dc round=1184355314 from=a3 priority=215
+2026-04-18T17:22:51.411733Z  INFO claim received claim_id=a2:9328a9dc66caf8eb870451eb1879730a4281b7693a3dcb87cb2d58d7cfb5bad3:1184355314 region=9328a9dc round=1184355314 from=a2 priority=104
+2026-04-18T17:22:51.412274Z  INFO claim received claim_id=a5:9328a9dc66caf8eb870451eb1879730a4281b7693a3dcb87cb2d58d7cfb5bad3:1184355314 region=9328a9dc round=1184355314 from=a5 priority=326
+2026-04-18T17:22:52.609576Z  INFO round_start round=1184355315
+2026-04-18T17:22:52.609983Z  INFO claim publish region=ac72368a x=0 y=0 priority=520 round=1184355315
+2026-04-18T17:22:52.610096Z  INFO round_close region=9328a9dc round=1184355314 claims=4
+2026-04-18T17:22:52.610190Z  INFO final_claim_set region=9328a9dc round=1184355314 claims=a1:9328a9dc66caf8eb870451eb1879730a4281b7693a3dcb87cb2d58d7cfb5bad3:1184355314,a5:9328a9dc66caf8eb870451eb1879730a4281b7693a3dcb87cb2d58d7cfb5bad3:1184355314,a3:9328a9dc66caf8eb870451eb1879730a4281b7693a3dcb87cb2d58d7cfb5bad3:1184355314,a2:9328a9dc66caf8eb870451eb1879730a4281b7693a3dcb87cb2d58d7cfb5bad3:1184355314
+2026-04-18T17:22:52.610219Z  INFO winner region=9328a9dc round=1184355314 order=a1:876 > a5:326 > a3:215 > a2:104 winner=a1
+2026-04-18T17:22:52.610286Z  INFO claim lost, rerouting immediately region=9328a9dc winner=a1
+2026-04-18T17:22:52.610367Z  INFO round_close region=ac72368a round=1184355314 claims=2
+2026-04-18T17:22:52.610392Z  INFO round_close region=ef134f2a round=1184355314 claims=3
+2026-04-18T17:22:52.610452Z  INFO final_claim_set region=ef134f2a round=1184355314 claims=a4:ef134f2a180ba05de91ab32d2976f51de13b68d823ea784171b1b0dafee67be4:1184355314,a5:ef134f2a180ba05de91ab32d2976f51de13b68d823ea784171b1b0dafee67be4:1184355314,a2:ef134f2a180ba05de91ab32d2976f51de13b68d823ea784171b1b0dafee67be4:1184355314
+2026-04-18T17:22:52.610476Z  INFO winner region=ef134f2a round=1184355314 order=a4:488 > a5:268 > a2:114 winner=a4
+2026-04-18T17:22:52.610515Z  INFO claim won, proceeding to explore region=ef134f2a
+2026-04-18T17:22:52.611344Z  INFO claim received claim_id=a3:9328a9dc66caf8eb870451eb1879730a4281b7693a3dcb87cb2d58d7cfb5bad3:1184355315 region=9328a9dc round=1184355315 from=a3 priority=664
+2026-04-18T17:22:52.612471Z  INFO consistent ownership digest across agents region=9328a9dc round=1184355314 participants=2 digest=4ba4fefe
+2026-04-18T17:22:52.612588Z  INFO claim received claim_id=a5:9328a9dc66caf8eb870451eb1879730a4281b7693a3dcb87cb2d58d7cfb5bad3:1184355315 region=9328a9dc round=1184355315 from=a5 priority=405
+2026-04-18T17:22:52.612668Z  INFO claim received claim_id=a2:9328a9dc66caf8eb870451eb1879730a4281b7693a3dcb87cb2d58d7cfb5bad3:1184355315 region=9328a9dc round=1184355315 from=a2 priority=936
+2026-04-18T17:22:52.612821Z  INFO ownership update region=9328a9dc owner=a1 round=1184355314 digest=4ba4fefe from=a5
+2026-04-18T17:22:52.612880Z  INFO consistent ownership digest across agents region=9328a9dc round=1184355314 participants=3 digest=4ba4fefe
+2026-04-18T17:22:52.612969Z  INFO vertex state agreement region=9328a9dc round=1184355314 participants=3 digest=4ba4fefe
+2026-04-18T17:22:52.613075Z  INFO ownership update region=ef134f2a owner=a4 round=1184355314 digest=3bb6f415 from=a5
+2026-04-18T17:22:52.613495Z  INFO vertex state agreement region=9328a9dc round=1184355314 participants=3 digest=4ba4fefe
+2026-04-18T17:22:52.613579Z  INFO ownership update region=ef134f2a owner=a4 round=1184355314 digest=3bb6f415 from=a3
+2026-04-18T17:22:52.613613Z  INFO consistent ownership digest across agents region=ef134f2a round=1184355314 participants=2 digest=3bb6f415
+2026-04-18T17:22:52.613654Z  INFO vertex state agreement region=ef134f2a round=1184355314 participants=2 digest=3bb6f415
+2026-04-18T17:22:52.613949Z  INFO vertex state agreement region=9328a9dc round=1184355314 participants=3 digest=4ba4fefe
+2026-04-18T17:22:52.614010Z  INFO consistent ownership digest across agents region=ef134f2a round=1184355314 participants=3 digest=3bb6f415
+2026-04-18T17:22:52.614056Z  INFO vertex state agreement region=ef134f2a round=1184355314 participants=3 digest=3bb6f415
+2026-04-18T17:22:52.614106Z  INFO consistent ownership digest across agents region=9328a9dc round=1184355314 participants=4 digest=4ba4fefe
+2026-04-18T17:22:52.614149Z  INFO vertex state agreement region=9328a9dc round=1184355314 participants=4 digest=4ba4fefe
+2026-04-18T17:22:52.614195Z  INFO ownership update region=ef134f2a owner=a4 round=1184355314 digest=3bb6f415 from=a2
+2026-04-18T17:22:52.614224Z  INFO consistent ownership digest across agents region=ef134f2a round=1184355314 participants=4 digest=3bb6f415
+2026-04-18T17:22:52.614265Z  INFO vertex state agreement region=ef134f2a round=1184355314 participants=4 digest=3bb6f415
+2026-04-18T17:22:52.614901Z  INFO claim received claim_id=a1:9328a9dc66caf8eb870451eb1879730a4281b7693a3dcb87cb2d58d7cfb5bad3:1184355315 region=9328a9dc round=1184355315 from=a1 priority=816
+2026-04-18T17:22:52.617376Z  INFO ownership update region=9328a9dc owner=a1 round=1184355314 digest=4ba4fefe from=a1
+2026-04-18T17:22:52.617439Z  INFO consistent ownership digest across agents region=9328a9dc round=1184355314 participants=5 digest=4ba4fefe
+2026-04-18T17:22:52.617507Z  INFO vertex state agreement region=9328a9dc round=1184355314 participants=5 digest=4ba4fefe
+2026-04-18T17:22:52.617560Z  INFO ownership update region=ef134f2a owner=a4 round=1184355314 digest=3bb6f415 from=a1
+2026-04-18T17:22:52.617593Z  INFO consistent ownership digest across agents region=ef134f2a round=1184355314 participants=5 digest=3bb6f415
+2026-04-18T17:22:52.617664Z  INFO vertex state agreement region=ef134f2a round=1184355314 participants=5 digest=3bb6f415
+2026-04-18T17:22:52.912001Z  INFO claim received claim_id=a3:76d3c2eeff0f7e9320cd69f952486c44d7cb4ec9903e2df44a772a3be0fb3b45:1184355315 region=76d3c2ee round=1184355315 from=a3 priority=76
+2026-04-18T17:22:52.914260Z  INFO claim received claim_id=a2:76d3c2eeff0f7e9320cd69f952486c44d7cb4ec9903e2df44a772a3be0fb3b45:1184355315 region=76d3c2ee round=1184355315 from=a2 priority=239
+2026-04-18T17:22:52.914322Z  INFO claim received claim_id=a5:76d3c2eeff0f7e9320cd69f952486c44d7cb4ec9903e2df44a772a3be0fb3b45:1184355315 region=76d3c2ee round=1184355315 from=a5 priority=799
+2026-04-18T17:22:52.916516Z  INFO claim received claim_id=a1:76d3c2eeff0f7e9320cd69f952486c44d7cb4ec9903e2df44a772a3be0fb3b45:1184355315 region=76d3c2ee round=1184355315 from=a1 priority=272
+2026-04-18T17:22:54.110052Z  INFO round_start round=1184355316
+2026-04-18T17:22:54.110451Z  INFO claim publish region=ac72368a x=0 y=0 priority=271 round=1184355316
+2026-04-18T17:22:54.110530Z  INFO round_close region=76d3c2ee round=1184355315 claims=4
+2026-04-18T17:22:54.110649Z  INFO final_claim_set region=76d3c2ee round=1184355315 claims=a5:76d3c2eeff0f7e9320cd69f952486c44d7cb4ec9903e2df44a772a3be0fb3b45:1184355315,a1:76d3c2eeff0f7e9320cd69f952486c44d7cb4ec9903e2df44a772a3be0fb3b45:1184355315,a2:76d3c2eeff0f7e9320cd69f952486c44d7cb4ec9903e2df44a772a3be0fb3b45:1184355315,a3:76d3c2eeff0f7e9320cd69f952486c44d7cb4ec9903e2df44a772a3be0fb3b45:1184355315
+2026-04-18T17:22:54.110677Z  INFO winner region=76d3c2ee round=1184355315 order=a5:799 > a1:272 > a2:239 > a3:76 winner=a5
+2026-04-18T17:22:54.110716Z  INFO claim lost, rerouting immediately region=76d3c2ee winner=a5
+2026-04-18T17:22:54.110822Z  INFO round_close region=9328a9dc round=1184355315 claims=4
+2026-04-18T17:22:54.110987Z  INFO final_claim_set region=9328a9dc round=1184355315 claims=a2:9328a9dc66caf8eb870451eb1879730a4281b7693a3dcb87cb2d58d7cfb5bad3:1184355315,a1:9328a9dc66caf8eb870451eb1879730a4281b7693a3dcb87cb2d58d7cfb5bad3:1184355315,a3:9328a9dc66caf8eb870451eb1879730a4281b7693a3dcb87cb2d58d7cfb5bad3:1184355315,a5:9328a9dc66caf8eb870451eb1879730a4281b7693a3dcb87cb2d58d7cfb5bad3:1184355315
+2026-04-18T17:22:54.111041Z  INFO winner region=9328a9dc round=1184355315 order=a2:936 > a1:816 > a3:664 > a5:405 winner=a2
+2026-04-18T17:22:54.111090Z  INFO claim lost, rerouting immediately region=9328a9dc winner=a2
+2026-04-18T17:22:54.111246Z  INFO round_close region=ac72368a round=1184355315 claims=1
+2026-04-18T17:22:54.111813Z  INFO claim received claim_id=a2:76d3c2eeff0f7e9320cd69f952486c44d7cb4ec9903e2df44a772a3be0fb3b45:1184355316 region=76d3c2ee round=1184355316 from=a2 priority=968
+2026-04-18T17:22:54.114540Z  INFO ownership update region=76d3c2ee owner=a5 round=1184355315 digest=920c7760 from=a2
+2026-04-18T17:22:54.114593Z  INFO consistent ownership digest across agents region=76d3c2ee round=1184355315 participants=2 digest=920c7760
+2026-04-18T17:22:54.114644Z  INFO claim received claim_id=a5:76d3c2eeff0f7e9320cd69f952486c44d7cb4ec9903e2df44a772a3be0fb3b45:1184355316 region=76d3c2ee round=1184355316 from=a5 priority=559
+2026-04-18T17:22:54.114707Z  INFO vertex state agreement region=76d3c2ee round=1184355315 participants=2 digest=920c7760
+2026-04-18T17:22:54.114777Z  INFO ownership update region=9328a9dc owner=a2 round=1184355315 digest=0289ddb4 from=a2
+2026-04-18T17:22:54.114886Z  INFO ownership update region=9328a9dc owner=a2 round=1184355315 digest=0289ddb4 from=a4
+2026-04-18T17:22:54.114926Z  INFO consistent ownership digest across agents region=9328a9dc round=1184355315 participants=2 digest=0289ddb4
+2026-04-18T17:22:54.114970Z  INFO vertex state agreement region=9328a9dc round=1184355315 participants=2 digest=0289ddb4
+2026-04-18T17:22:54.115015Z  INFO ownership update region=76d3c2ee owner=a5 round=1184355315 digest=920c7760 from=a5
+2026-04-18T17:22:54.115042Z  INFO consistent ownership digest across agents region=76d3c2ee round=1184355315 participants=3 digest=920c7760
+2026-04-18T17:22:54.115084Z  INFO vertex state agreement region=76d3c2ee round=1184355315 participants=3 digest=920c7760
+2026-04-18T17:22:54.115124Z  INFO ownership update region=9328a9dc owner=a2 round=1184355315 digest=0289ddb4 from=a5
+2026-04-18T17:22:54.115151Z  INFO consistent ownership digest across agents region=9328a9dc round=1184355315 participants=3 digest=0289ddb4
+2026-04-18T17:22:54.115193Z  INFO vertex state agreement region=9328a9dc round=1184355315 participants=3 digest=0289ddb4
+2026-04-18T17:22:54.115237Z  INFO claim received claim_id=a1:48f03bc9419d2b283c9d08b0c81861d2a9274e92a062b1597b0874fe098ebd2f:1184355316 region=48f03bc9 round=1184355316 from=a1 priority=673
+2026-04-18T17:22:54.115301Z  INFO ownership update region=76d3c2ee owner=a5 round=1184355315 digest=920c7760 from=a1
+2026-04-18T17:22:54.115346Z  INFO consistent ownership digest across agents region=76d3c2ee round=1184355315 participants=4 digest=920c7760
+2026-04-18T17:22:54.115398Z  INFO vertex state agreement region=76d3c2ee round=1184355315 participants=4 digest=920c7760
+2026-04-18T17:22:54.115447Z  INFO ownership update region=9328a9dc owner=a2 round=1184355315 digest=0289ddb4 from=a1
+2026-04-18T17:22:54.115476Z  INFO consistent ownership digest across agents region=9328a9dc round=1184355315 participants=4 digest=0289ddb4
+2026-04-18T17:22:54.115522Z  INFO vertex state agreement region=9328a9dc round=1184355315 participants=4 digest=0289ddb4
+2026-04-18T17:22:54.412063Z  INFO claim received claim_id=a2:48f03bc9419d2b283c9d08b0c81861d2a9274e92a062b1597b0874fe098ebd2f:1184355316 region=48f03bc9 round=1184355316 from=a2 priority=519
+2026-04-18T17:22:54.412782Z  INFO claim received claim_id=a5:48f03bc9419d2b283c9d08b0c81861d2a9274e92a062b1597b0874fe098ebd2f:1184355316 region=48f03bc9 round=1184355316 from=a5 priority=454
+2026-04-18T17:22:55.609375Z  INFO claim publish region=ac72368a x=0 y=0 priority=988 round=1184355317
+2026-04-18T17:22:55.609441Z  INFO round_start round=1184355317
+2026-04-18T17:22:55.609786Z  INFO round_close region=48f03bc9 round=1184355316 claims=3
+2026-04-18T17:22:55.609933Z  INFO final_claim_set region=48f03bc9 round=1184355316 claims=a1:48f03bc9419d2b283c9d08b0c81861d2a9274e92a062b1597b0874fe098ebd2f:1184355316,a2:48f03bc9419d2b283c9d08b0c81861d2a9274e92a062b1597b0874fe098ebd2f:1184355316,a5:48f03bc9419d2b283c9d08b0c81861d2a9274e92a062b1597b0874fe098ebd2f:1184355316
+2026-04-18T17:22:55.610002Z  INFO winner region=48f03bc9 round=1184355316 order=a1:673 > a2:519 > a5:454 winner=a1
+2026-04-18T17:22:55.610069Z  INFO claim lost, rerouting immediately region=48f03bc9 winner=a1
+2026-04-18T17:22:55.610222Z  INFO round_close region=76d3c2ee round=1184355316 claims=2
+2026-04-18T17:22:55.610435Z  INFO round_close region=ac72368a round=1184355316 claims=1
+2026-04-18T17:22:55.612523Z  INFO claim received claim_id=a2:48f03bc9419d2b283c9d08b0c81861d2a9274e92a062b1597b0874fe098ebd2f:1184355317 region=48f03bc9 round=1184355317 from=a2 priority=419
+2026-04-18T17:22:55.612674Z  INFO ownership update region=48f03bc9 owner=a1 round=1184355316 digest=f0c5d717 from=a2
+2026-04-18T17:22:55.612718Z  INFO consistent ownership digest across agents region=48f03bc9 round=1184355316 participants=2 digest=f0c5d717
+2026-04-18T17:22:55.612769Z  INFO vertex state agreement region=48f03bc9 round=1184355316 participants=2 digest=f0c5d717
+2026-04-18T17:22:55.613891Z  INFO claim received claim_id=a5:48f03bc9419d2b283c9d08b0c81861d2a9274e92a062b1597b0874fe098ebd2f:1184355317 region=48f03bc9 round=1184355317 from=a5 priority=255
+2026-04-18T17:22:55.613954Z  INFO consistent ownership digest across agents region=48f03bc9 round=1184355316 participants=3 digest=f0c5d717
+2026-04-18T17:22:55.613987Z  INFO vertex state agreement region=48f03bc9 round=1184355316 participants=3 digest=f0c5d717
+2026-04-18T17:22:55.615001Z  INFO claim received claim_id=a1:cc0c07a725b8917c06a2497f510ae1555952dc35d9f4dcde5da1ca13102ad8ce:1184355317 region=cc0c07a7 round=1184355317 from=a1 priority=651
+2026-04-18T17:22:55.615084Z  INFO ownership update region=48f03bc9 owner=a1 round=1184355316 digest=f0c5d717 from=a1
+2026-04-18T17:22:55.615117Z  INFO consistent ownership digest across agents region=48f03bc9 round=1184355316 participants=4 digest=f0c5d717
+2026-04-18T17:22:55.615199Z  INFO vertex state agreement region=48f03bc9 round=1184355316 participants=4 digest=f0c5d717
+2026-04-18T17:22:55.912492Z  INFO claim received claim_id=a2:cc0c07a725b8917c06a2497f510ae1555952dc35d9f4dcde5da1ca13102ad8ce:1184355317 region=cc0c07a7 round=1184355317 from=a2 priority=690
+2026-04-18T17:22:55.913151Z  INFO claim received claim_id=a5:cc0c07a725b8917c06a2497f510ae1555952dc35d9f4dcde5da1ca13102ad8ce:1184355317 region=cc0c07a7 round=1184355317 from=a5 priority=212
+2026-04-18T17:22:57.109946Z  INFO round_start round=1184355318
+2026-04-18T17:22:57.110555Z  INFO claim publish region=ac72368a x=0 y=0 priority=571 round=1184355318
+2026-04-18T17:22:57.110641Z  INFO round_close region=48f03bc9 round=1184355317 claims=2
+2026-04-18T17:22:57.110724Z  INFO round_close region=ac72368a round=1184355317 claims=1
+2026-04-18T17:22:57.110809Z  INFO round_close region=cc0c07a7 round=1184355317 claims=3
+2026-04-18T17:22:57.110956Z  INFO final_claim_set region=cc0c07a7 round=1184355317 claims=a2:cc0c07a725b8917c06a2497f510ae1555952dc35d9f4dcde5da1ca13102ad8ce:1184355317,a1:cc0c07a725b8917c06a2497f510ae1555952dc35d9f4dcde5da1ca13102ad8ce:1184355317,a5:cc0c07a725b8917c06a2497f510ae1555952dc35d9f4dcde5da1ca13102ad8ce:1184355317
+2026-04-18T17:22:57.111008Z  INFO winner region=cc0c07a7 round=1184355317 order=a2:690 > a1:651 > a5:212 winner=a2
+2026-04-18T17:22:57.111078Z  INFO claim lost, rerouting immediately region=cc0c07a7 winner=a2
+2026-04-18T17:22:57.113862Z  INFO claim received claim_id=a5:cc0c07a725b8917c06a2497f510ae1555952dc35d9f4dcde5da1ca13102ad8ce:1184355318 region=cc0c07a7 round=1184355318 from=a5 priority=978
+2026-04-18T17:22:57.113998Z  INFO ownership update region=cc0c07a7 owner=a2 round=1184355317 digest=2b83d01e from=a2
+2026-04-18T17:22:57.114046Z  INFO consistent ownership digest across agents region=cc0c07a7 round=1184355317 participants=2 digest=2b83d01e
+2026-04-18T17:22:57.114091Z  INFO vertex state agreement region=cc0c07a7 round=1184355317 participants=2 digest=2b83d01e
+2026-04-18T17:22:57.114137Z  INFO claim received claim_id=a2:a79a44cee0ffc19bf7c4146a5cf631dc68015b6dbceca0a0cec5a5a8cc9fc7a3:1184355318 region=a79a44ce round=1184355318 from=a2 priority=886
+2026-04-18T17:22:57.114212Z  INFO consistent ownership digest across agents region=cc0c07a7 round=1184355317 participants=3 digest=2b83d01e
+2026-04-18T17:22:57.114325Z  INFO vertex state agreement region=cc0c07a7 round=1184355317 participants=3 digest=2b83d01e
+2026-04-18T17:22:57.115887Z  INFO ownership update region=cc0c07a7 owner=a2 round=1184355317 digest=2b83d01e from=a1
+2026-04-18T17:22:57.115936Z  INFO consistent ownership digest across agents region=cc0c07a7 round=1184355317 participants=4 digest=2b83d01e
+2026-04-18T17:22:57.116002Z  INFO vertex state agreement region=cc0c07a7 round=1184355317 participants=4 digest=2b83d01e
+2026-04-18T17:22:57.156944Z  INFO claim received claim_id=a1:a79a44cee0ffc19bf7c4146a5cf631dc68015b6dbceca0a0cec5a5a8cc9fc7a3:1184355318 region=a79a44ce round=1184355318 from=a1 priority=725
+2026-04-18T17:22:57.453069Z  INFO claim received claim_id=a5:a79a44cee0ffc19bf7c4146a5cf631dc68015b6dbceca0a0cec5a5a8cc9fc7a3:1184355318 region=a79a44ce round=1184355318 from=a5 priority=313
+2026-04-18T17:22:58.610213Z  INFO round_start round=1184355319
+2026-04-18T17:22:58.610944Z  INFO claim publish region=ac72368a x=0 y=0 priority=901 round=1184355319
+2026-04-18T17:22:58.611071Z  INFO round_close region=a79a44ce round=1184355318 claims=3
+2026-04-18T17:22:58.611177Z  INFO final_claim_set region=a79a44ce round=1184355318 claims=a2:a79a44cee0ffc19bf7c4146a5cf631dc68015b6dbceca0a0cec5a5a8cc9fc7a3:1184355318,a1:a79a44cee0ffc19bf7c4146a5cf631dc68015b6dbceca0a0cec5a5a8cc9fc7a3:1184355318,a5:a79a44cee0ffc19bf7c4146a5cf631dc68015b6dbceca0a0cec5a5a8cc9fc7a3:1184355318
+2026-04-18T17:22:58.611211Z  INFO winner region=a79a44ce round=1184355318 order=a2:886 > a1:725 > a5:313 winner=a2
+2026-04-18T17:22:58.611255Z  INFO claim lost, rerouting immediately region=a79a44ce winner=a2
+2026-04-18T17:22:58.611597Z  INFO round_close region=ac72368a round=1184355318 claims=1
+2026-04-18T17:22:58.611661Z  INFO round_close region=cc0c07a7 round=1184355318 claims=1
+2026-04-18T17:22:58.612003Z  INFO claim received claim_id=a2:a79a44cee0ffc19bf7c4146a5cf631dc68015b6dbceca0a0cec5a5a8cc9fc7a3:1184355319 region=a79a44ce round=1184355319 from=a2 priority=282
+2026-04-18T17:22:58.616409Z  INFO ownership update region=a79a44ce owner=a2 round=1184355318 digest=52c2383c from=a5
+2026-04-18T17:22:58.616596Z  INFO claim received claim_id=a5:2bef8ffb8bc03ce37956fe29e166c74c73554db769e2c83740f55105d74469b4:1184355319 region=2bef8ffb round=1184355319 from=a5 priority=607
+2026-04-18T17:22:58.617078Z  INFO ownership update region=a79a44ce owner=a2 round=1184355318 digest=52c2383c from=a4
+2026-04-18T17:22:58.617162Z  INFO consistent ownership digest across agents region=a79a44ce round=1184355318 participants=2 digest=52c2383c
+2026-04-18T17:22:58.617251Z  INFO vertex state agreement region=a79a44ce round=1184355318 participants=2 digest=52c2383c
+2026-04-18T17:22:58.617321Z  INFO ownership update region=a79a44ce owner=a2 round=1184355318 digest=52c2383c from=a1
+2026-04-18T17:22:58.617415Z  INFO consistent ownership digest across agents region=a79a44ce round=1184355318 participants=3 digest=52c2383c
+2026-04-18T17:22:58.617498Z  INFO vertex state agreement region=a79a44ce round=1184355318 participants=3 digest=52c2383c
+2026-04-18T17:22:58.617593Z  INFO ownership update region=a79a44ce owner=a2 round=1184355318 digest=52c2383c from=a2
+2026-04-18T17:22:58.617645Z  INFO consistent ownership digest across agents region=a79a44ce round=1184355318 participants=4 digest=52c2383c
+2026-04-18T17:22:58.617732Z  INFO vertex state agreement region=a79a44ce round=1184355318 participants=4 digest=52c2383c
+2026-04-18T17:22:58.617841Z  INFO claim received claim_id=a1:2bef8ffb8bc03ce37956fe29e166c74c73554db769e2c83740f55105d74469b4:1184355319 region=2bef8ffb round=1184355319 from=a1 priority=737
+2026-04-18T17:22:58.912183Z  INFO claim received claim_id=a2:2bef8ffb8bc03ce37956fe29e166c74c73554db769e2c83740f55105d74469b4:1184355319 region=2bef8ffb round=1184355319 from=a2 priority=925

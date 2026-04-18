@@ -22,6 +22,7 @@ const TOPIC_CLAIMS: &str = "swarm/claims";
 const TOPIC_HEARTBEATS: &str = "swarm/heartbeats";
 const TOPIC_OWNERSHIP: &str = "swarm/ownership";
 const TOPIC_EVENTS: &str = "swarm/events";
+const MIN_CLAIMS_FLOOR: usize = 3;
 
 #[derive(Parser, Debug, Clone)]
 struct Args {
@@ -57,6 +58,10 @@ struct NodeState {
     reroute_block: HashSet<String>,
     consensus_reports: HashMap<(String, u64), HashMap<String, String>>,
     finalized_rounds: HashSet<(String, u64)>,
+    decisions: HashMap<(String, u64), String>,
+    re_election_active: HashSet<String>,
+    round_started_logged: HashSet<u64>,
+    round_closed_logged: HashSet<(String, u64)>,
 }
 
 #[derive(Clone)]
@@ -107,7 +112,12 @@ async fn main() -> Result<()> {
     let (inbound_tx, inbound_rx) = mpsc::channel::<InboundMessage>(4096);
 
     let mqtt_task = tokio::spawn(mqtt_loop(args.clone(), outbound_rx, inbound_tx));
-    let rx_task = tokio::spawn(rx_loop(inbound_rx, state.clone(), args.agent_id.clone()));
+    let rx_task = tokio::spawn(rx_loop(
+        inbound_rx,
+        state.clone(),
+        args.agent_id.clone(),
+        args.claim_round_ms,
+    ));
     let hb_task = tokio::spawn(heartbeat_loop(
         outbound_tx.clone(),
         state.clone(),
@@ -275,6 +285,7 @@ async fn rx_loop(
     mut inbound_rx: mpsc::Receiver<InboundMessage>,
     state: Arc<Mutex<NodeState>>,
     me: String,
+    claim_round_ms: u64,
 ) {
     while let Some(inbound) = inbound_rx.recv().await {
         let msg: WireMessage = match serde_json::from_slice(&inbound.payload) {
@@ -284,11 +295,16 @@ async fn rx_loop(
                 continue;
             }
         };
-        handle_wire_message(&state, msg, &me).await;
+        handle_wire_message(&state, msg, &me, claim_round_ms).await;
     }
 }
 
-async fn handle_wire_message(state: &Arc<Mutex<NodeState>>, msg: WireMessage, me: &str) {
+async fn handle_wire_message(
+    state: &Arc<Mutex<NodeState>>,
+    msg: WireMessage,
+    me: &str,
+    claim_round_ms: u64,
+) {
     match msg {
         WireMessage::Heartbeat(hb) => {
             let mut s = state.lock().await;
@@ -297,6 +313,26 @@ async fn handle_wire_message(state: &Arc<Mutex<NodeState>>, msg: WireMessage, me
         WireMessage::Claim(claim) => {
             let mut s = state.lock().await;
             s.last_seen.insert(claim.agent_id.clone(), now_ms());
+            let active_round = now_ms() / claim_round_ms;
+            if s
+                .decisions
+                .contains_key(&(claim.region_id.clone(), claim.round_id))
+            {
+                warn!(
+                    agent = %claim.agent_id,
+                    round = claim.round_id,
+                    "late_claim_ignored(agent_id, round_id)"
+                );
+                return;
+            }
+            if claim.round_id + 2 <= active_round {
+                warn!(
+                    agent = %claim.agent_id,
+                    round = claim.round_id,
+                    "late_claim_ignored(agent_id, round_id)"
+                );
+                return;
+            }
             if !s.claims.contains_key(&claim.claim_id) {
                 info!(
                     claim_id = %claim.claim_id,
@@ -327,6 +363,9 @@ async fn handle_wire_message(state: &Arc<Mutex<NodeState>>, msg: WireMessage, me
                 );
                 s.ownership
                     .insert(result.ownership.region_id.clone(), result.ownership.clone());
+                if !result.ownership.owner_id.is_empty() {
+                    s.re_election_active.remove(&result.ownership.region_id);
+                }
             }
 
             s.consensus_reports
@@ -496,25 +535,63 @@ async fn consensus_loop(
 
         let now = now_ms();
         let active_round = now / args.claim_round_ms;
+        {
+            let mut s = state.lock().await;
+            if s.round_started_logged.insert(active_round) {
+                info!(round = active_round, "round_start");
+            }
+        }
         if active_round == 0 {
             continue;
         }
-        let finalized_round = active_round - 1;
 
-        let (regions, claims_snapshot): (BTreeSet<String>, Vec<Claim>) = {
+        let (pending, claims_snapshot, min_claims): (BTreeSet<(String, u64)>, Vec<Claim>, usize) = {
             let s = state.lock().await;
             let claims: Vec<Claim> = s.claims.values().cloned().collect();
-            let mut r = BTreeSet::new();
+            let mut pending = BTreeSet::new();
             for c in &claims {
-                if c.round_id == finalized_round {
-                    r.insert(c.region_id.clone());
+                if c.round_id < active_round
+                    && !s.finalized_rounds.contains(&(c.region_id.clone(), c.round_id))
+                {
+                    pending.insert((c.region_id.clone(), c.round_id));
                 }
             }
-            (r, claims)
+            let alive_agents = s
+                .last_seen
+                .values()
+                .filter(|seen| now.saturating_sub(**seen) <= args.heartbeat_timeout_ms * 2)
+                .count();
+            let dynamic_min = ((alive_agents * 6) + 9) / 10;
+            let min_claims = MIN_CLAIMS_FLOOR.max(dynamic_min);
+            (pending, claims, min_claims)
         };
 
-        for region in regions {
-            let round = finalized_round;
+        for (region, round) in pending {
+            let round_close = (round + 1) * args.claim_round_ms;
+            if now < round_close {
+                continue;
+            }
+
+            let scoped_count = claims_snapshot
+                .iter()
+                .filter(|c| c.region_id == region && c.round_id == round)
+                .count();
+            {
+                let mut s = state.lock().await;
+                if s.round_closed_logged.insert((region.clone(), round)) {
+                    info!(
+                        region = %short_region(&region),
+                        round,
+                        claims = scoped_count,
+                        "round_close"
+                    );
+                }
+            }
+
+            if scoped_count < min_claims {
+                continue;
+            }
+
             {
                 let s = state.lock().await;
                 if s.finalized_rounds.contains(&(region.clone(), round)) {
@@ -530,7 +607,7 @@ async fn consensus_loop(
                 region = %short_region(&region),
                 round,
                 claims = %format_claim_ids(&result.ordered_claims),
-                "claims received set"
+                "final_claim_set"
             );
 
             info!(
@@ -538,25 +615,40 @@ async fn consensus_loop(
                 round,
                 order = %format_order(&result.ordered_claims),
                 winner = %result.ownership.owner_id,
-                "deterministic winner computed"
+                "winner"
             );
 
-            let became_owner = {
+            let should_execute = {
                 let mut s = state.lock().await;
-                let prev_owner = s
-                    .ownership
-                    .get(&region)
-                    .map(|o| o.owner_id.clone())
-                    .unwrap_or_default();
+                if s.finalized_rounds.contains(&(region.clone(), round)) {
+                    false
+                } else {
+                    s.decisions
+                        .entry((region.clone(), round))
+                        .or_insert_with(|| result.ownership.owner_id.clone());
+                    let decided_winner = s
+                        .decisions
+                        .get(&(region.clone(), round))
+                        .cloned()
+                        .unwrap_or_default();
+                    let prev_owner = s
+                        .ownership
+                        .get(&region)
+                        .map(|o| o.owner_id.clone())
+                        .unwrap_or_default();
                 s.ownership.insert(region.clone(), result.ownership.clone());
-                if result.ownership.owner_id != args.agent_id {
-                    s.reroute_block.insert(region.clone());
+                    if decided_winner != args.agent_id {
+                        s.reroute_block.insert(region.clone());
+                    } else {
+                        s.reroute_block.remove(&region);
+                        s.re_election_active.remove(&region);
+                    }
+                    s.finalized_rounds.insert((region.clone(), round));
+                    prev_owner != decided_winner && decided_winner == args.agent_id
                 }
-                s.finalized_rounds.insert((region.clone(), round));
-                prev_owner != result.ownership.owner_id && result.ownership.owner_id == args.agent_id
             };
 
-            if became_owner {
+            if should_execute {
                 info!(
                     region = %short_region(&region),
                     "claim won, proceeding to explore"
@@ -630,16 +722,32 @@ async fn failover_loop(state: Arc<Mutex<NodeState>>, args: Args) {
         }
 
         for dead in &stale {
-            warn!(agent = %dead, "heartbeat timeout, marking failed");
+            warn!(agent = %dead, "heartbeat_missed(agent_id)");
         }
 
         let mut reopened = Vec::new();
+        let regions_to_reopen: Vec<String> = s
+            .ownership
+            .values()
+            .filter(|o| stale.contains(&o.owner_id))
+            .map(|o| o.region_id.clone())
+            .filter(|r| !s.re_election_active.contains(r))
+            .collect();
+        for region in &regions_to_reopen {
+            s.re_election_active.insert(region.clone());
+        }
         for ownership in s.ownership.values_mut() {
-            if stale.contains(&ownership.owner_id) {
+            if stale.contains(&ownership.owner_id) && regions_to_reopen.contains(&ownership.region_id)
+            {
                 warn!(
                     region = %short_region(&ownership.region_id),
                     dead_owner = %ownership.owner_id,
-                    "owner failed, region reopened"
+                    "owner_invalidated(region_id)"
+                );
+                info!(
+                    region = %short_region(&ownership.region_id),
+                    round_id = now / args.claim_round_ms,
+                    "re_election_started(region_id, round_id)"
                 );
                 ownership.owner_id.clear();
                 ownership.last_updated = now;
@@ -735,7 +843,6 @@ fn resolve_region(region_id: &str, round_id: u64, claims: &[Claim], now: u64) ->
     scoped.sort_by(|a, b| {
         b.priority
             .cmp(&a.priority)
-            .then(a.timestamp.cmp(&b.timestamp))
             .then(a.agent_id.cmp(&b.agent_id))
             .then(a.claim_id.cmp(&b.claim_id))
     });

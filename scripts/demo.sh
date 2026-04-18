@@ -3,6 +3,7 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
+BIN_PATH="$ROOT_DIR/target/debug/vertex-hack"
 
 LOG_DIR="${LOG_DIR:-$ROOT_DIR/logs/demo}"
 mkdir -p "$LOG_DIR"
@@ -40,7 +41,7 @@ check_broker_reachable() {
   timeout 1 bash -c ">/dev/tcp/$host/$port" 2>/dev/null
 }
 
-cargo build >/dev/null
+CARGO_TARGET_DIR="$ROOT_DIR/target" cargo build >/dev/null
 
 echo "using FoxMQ brokers: $BROKERS"
 if [[ -n "$MQTT_USERNAME" ]]; then
@@ -65,7 +66,7 @@ if [[ "$reachable" -eq 0 ]]; then
 fi
 
 for id in "${AGENTS[@]}"; do
-  NO_COLOR=1 RUST_LOG=info RUST_LOG_STYLE=never ./target/debug/vertex-hack \
+  NO_COLOR=1 RUST_LOG=info RUST_LOG_STYLE=never "$BIN_PATH" \
     --agent-id "$id" \
     --brokers "$BROKERS" \
     --mqtt-username "$MQTT_USERNAME" \
@@ -91,11 +92,11 @@ fi
 
 echo ""
 echo "--- contention evidence ---"
-grep -h "claims received set.*region=$REGION_SHORT" "$LOG_DIR"/*.log | head -n 10 || true
-grep -h "deterministic winner computed.*region=$REGION_SHORT" "$LOG_DIR"/*.log | head -n 10 || true
+grep -h "final_claim_set.*region=$REGION_SHORT" "$LOG_DIR"/*.log | head -n 10 || true
+grep -h "winner.*region=$REGION_SHORT" "$LOG_DIR"/*.log | head -n 10 || true
 grep -h "claim lost, rerouting immediately.*region=$REGION_SHORT" "$LOG_DIR"/*.log | head -n 10 || true
 
-winner="$(grep -h "deterministic winner computed.*region=$REGION_SHORT" "$LOG_DIR"/*.log | head -n 1 | sed -E 's/.* winner=([^ ]+).*/\1/' || true)"
+winner="$(grep -h "winner.*region=$REGION_SHORT" "$LOG_DIR"/*.log | head -n 1 | sed -E 's/.* winner=([^ ]+).*/\1/' || true)"
 if [[ -z "$winner" ]]; then
   echo "no winner found; ensure FoxMQ cluster is reachable and inspect $LOG_DIR"
   exit 1
@@ -110,7 +111,7 @@ sleep 5
 
 echo ""
 echo "--- failover evidence ---"
-grep -hE "heartbeat timeout|owner failed, region reopened|claim won, proceeding.*region=$REGION_SHORT" "$LOG_DIR"/*.log | tail -n 40 || true
+grep -hE "heartbeat_missed|owner_invalidated|re_election_started|claim won, proceeding.*region=$REGION_SHORT" "$LOG_DIR"/*.log | tail -n 40 || true
 
 echo ""
 echo "logs written to: $LOG_DIR"
