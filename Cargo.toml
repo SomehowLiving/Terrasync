@@ -3,6 +3,10 @@ name = "vertex-hack"
 version = "0.1.0"
 edition = "2021"
 
+[[bin]]
+name = "term-viz"
+path = "src/bin/term_viz.rs"
+
 [dependencies]
 anyhow = "1"
 clap = { version = "4", features = ["derive"] }
@@ -15,3 +19,5 @@ rand = "0.8"
 sha2 = "0.10"
 hex = "0.4"
 rumqttc = "0.25"
+ratatui = "0.28"
+crossterm = "0.28"

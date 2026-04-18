@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cats & Food - Deterministic Coordination</title>
+    <style>
+      html, body {
+        margin: 0;
+        background: #0b1020;
+        color: #cbd5e1;
+        font-family: ui-sans-serif, system-ui, sans-serif;
+      }
+      #hud {
+        position: fixed;
+        top: 8px;
+        left: 8px;
+        background: rgba(2, 6, 23, 0.75);
+        border: 1px solid #334155;
+        border-radius: 8px;
+        padding: 8px 10px;
+        font-size: 12px;
+        line-height: 1.35;
+        z-index: 2;
+      }
+      #scene {
+        display: block;
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="hud">
+      <div><strong>Cats & Food</strong></div>
+      <div id="status">Connecting...</div>
+      <div id="round">Round: -</div>
+      <div id="winner">Winner: -</div>
+    </div>
+    <canvas id="scene"></canvas>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "vertex-hack-viz",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ws": "latest"
+  }
+}

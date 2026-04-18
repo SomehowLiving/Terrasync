@@ -67,3 +67,56 @@ export FOXMQ_PASSWORD=swarm
 - `consistent ownership digest across agents`
 - `heartbeat timeout, marking failed`
 - `owner failed, region reopened`
+
+## Live Visualization (WebSocket + Canvas)
+
+Frontend renders backend events only (no winner simulation in UI).
+
+### Start bridge
+
+```bash
+cd viz
+npm install
+npm start
+```
+
+This serves UI on `http://localhost:8080` and broadcasts:
+
+- JSON lines from `stdin` directly
+- optionally parsed events from backend logs when `VIZ_LOG_DIR` is set
+
+### Stream backend logs into UI (quick demo mode)
+
+In a second terminal:
+
+```bash
+cd viz
+VIZ_LOG_DIR=../logs/demo npm start
+```
+
+Then run your backend demo in another terminal:
+
+```bash
+./scripts/demo.sh
+```
+
+### Terminal grid (ratatui)
+
+Same discrete grid and event overlay in the console:
+
+```bash
+cargo run --bin term-viz -- --demo
+```
+
+- **S** — toggle step mode (press **Space** / **n** for each tick)
+- **+** / **-** — tick interval (slow motion, default `--tick-ms 750`)
+- **K** — kill winner (during stability) or clear winner (live)
+- **R** — restart scripted demo
+- **Live stdin** (JSON lines, same as the web bridge): `cargo run --bin term-viz -- --live`
+
+### Bridge event contract
+
+- `round_update` updates food target, claim set, and winner
+- `agent_position` updates cat movement targets
+- `event` with `name="reroute"` flashes loser and animates away
+- `event` with `name="owner_invalidated"` shows re-election pulse
