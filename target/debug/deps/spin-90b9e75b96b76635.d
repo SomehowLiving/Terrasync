@@ -1,0 +1,12 @@
+/home/somehowliving/dev/ai/vertex-hack/target/debug/deps/spin-90b9e75b96b76635.d: /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spin-0.9.8/src/lib.rs /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spin-0.9.8/src/barrier.rs /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spin-0.9.8/src/lazy.rs /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spin-0.9.8/src/mutex.rs /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spin-0.9.8/src/mutex/spin.rs /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spin-0.9.8/src/once.rs /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spin-0.9.8/src/relax.rs /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spin-0.9.8/src/rwlock.rs
+
+/home/somehowliving/dev/ai/vertex-hack/target/debug/deps/libspin-90b9e75b96b76635.rmeta: /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spin-0.9.8/src/lib.rs /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spin-0.9.8/src/barrier.rs /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spin-0.9.8/src/lazy.rs /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spin-0.9.8/src/mutex.rs /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spin-0.9.8/src/mutex/spin.rs /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spin-0.9.8/src/once.rs /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spin-0.9.8/src/relax.rs /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spin-0.9.8/src/rwlock.rs
+
+/home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spin-0.9.8/src/lib.rs:
+/home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spin-0.9.8/src/barrier.rs:
+/home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spin-0.9.8/src/lazy.rs:
+/home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spin-0.9.8/src/mutex.rs:
+/home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spin-0.9.8/src/mutex/spin.rs:
+/home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spin-0.9.8/src/once.rs:
+/home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spin-0.9.8/src/relax.rs:
+/home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/spin-0.9.8/src/rwlock.rs:

@@ -1,0 +1,14 @@
+/home/somehowliving/dev/ai/vertex-hack/target/debug/deps/thiserror-f04e6415708beaa4.d: /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/lib.rs /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/aserror.rs /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/display.rs /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/var.rs /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/private.rs /home/somehowliving/dev/ai/vertex-hack/target/debug/build/thiserror-c729ee368bdfcf2e/out/private.rs
+
+/home/somehowliving/dev/ai/vertex-hack/target/debug/deps/libthiserror-f04e6415708beaa4.rlib: /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/lib.rs /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/aserror.rs /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/display.rs /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/var.rs /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/private.rs /home/somehowliving/dev/ai/vertex-hack/target/debug/build/thiserror-c729ee368bdfcf2e/out/private.rs
+
+/home/somehowliving/dev/ai/vertex-hack/target/debug/deps/libthiserror-f04e6415708beaa4.rmeta: /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/lib.rs /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/aserror.rs /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/display.rs /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/var.rs /home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/private.rs /home/somehowliving/dev/ai/vertex-hack/target/debug/build/thiserror-c729ee368bdfcf2e/out/private.rs
+
+/home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/lib.rs:
+/home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/aserror.rs:
+/home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/display.rs:
+/home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/var.rs:
+/home/somehowliving/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.18/src/private.rs:
+/home/somehowliving/dev/ai/vertex-hack/target/debug/build/thiserror-c729ee368bdfcf2e/out/private.rs:
+
+# env-dep:OUT_DIR=/home/somehowliving/dev/ai/vertex-hack/target/debug/build/thiserror-c729ee368bdfcf2e/out
