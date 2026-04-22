@@ -1,42 +1,197 @@
-# Conflict-Free Exploration with Deterministic Territory Ownership
+# 🚀 Terrasync
 
-Leaderless Rust multi-agent swarm using real FoxMQ/Vertex messaging for contention resolution and failover.
+## Conflict-Free Exploration with Deterministic Territory Ownership
 
-## What changed
+A leaderless multi-agent system where agents compete for shared resources and resolve conflicts **deterministically** — without coordination servers, locks, or duplicate work.
 
-- Removed fake local consensus module `src/vertex.rs`
-- Replaced UDP peer gossip with FoxMQ MQTT topic pub/sub
-- All inter-agent coordination now flows through decentralized FoxMQ topics:
-  - `swarm/claims`
-  - `swarm/heartbeats`
-  - `swarm/ownership`
-  - `swarm/events`
+---
 
-## Determinism model
+# 🧠 Problem
 
-Each agent independently computes winner from the same claim set for `(region_id, round_id)`:
+In distributed multi-agent systems (robots, AI agents, services), multiple agents often detect the same task or region at the same time.
+
+This leads to:
+
+* duplicate work
+* resource contention
+* inefficient coordination
+* reliance on central schedulers
+
+Most systems solve this with:
+
+* locks
+* leaders
+* or probabilistic backoff
+
+👉 None guarantee:
+
+> **exactly one owner per task — deterministically — without central control**
+
+---
+
+# 💡 Solution
+
+Terrasync turns **contention into a consensus problem**.
+
+Instead of avoiding conflicts, agents:
+
+1. **compete for regions**
+2. **broadcast claims**
+3. **independently compute the same winner**
+
+Result:
+
+* exactly one owner per region
+* no duplicate execution
+* immediate rerouting for losers
+
+---
+
+# ⚙️ How It Works
+
+## 1. Region Abstraction
+
+Environment is divided into regions:
+
+```text
+(x, y) → region_id = hash(x, y)
+```
+
+---
+
+## 2. Claim Broadcast
+
+Agents publish claims via FoxMQ:
+
+* agent_id
+* region_id
+* priority
+* timestamp
+
+Topics used:
+
+* `swarm/claims`
+* `swarm/heartbeats`
+* `swarm/ownership`
+* `swarm/events`
+
+---
+
+## 3. Deterministic Consensus
+
+Each agent computes the same winner using:
 
 1. `priority` DESC
 2. `timestamp` ASC
 3. `agent_id` ASC
 4. `claim_id` ASC
 
-Because all agents subscribe to the same consensus-backed FoxMQ stream and run the same ordering rule, ownership converges deterministically.
+Because:
 
-## FoxMQ/Vertex integration notes
+* all agents receive the same message stream (FoxMQ / Vertex)
+* all run identical logic
 
-- MQTT QoS 2 is used for coordination messages (`ExactlyOnce` in client code)
-- Agent runtime has reconnect+retry logic across `--brokers` endpoints
-- No central orchestrator or scheduler is introduced
-- Agents remain independent processes
+👉 **ownership converges without coordination**
 
-## Build
+---
+
+## 4. Conflict-Free Execution
+
+* Winner → proceeds
+* Others → instantly reroute
+
+No collisions. No duplication.
+
+---
+
+## 5. Failure Recovery
+
+If the owner dies:
+
+* heartbeat timeout triggers
+* region becomes unclaimed
+* new claim round begins
+
+---
+
+# 🧩 Key Properties
+
+* **Leaderless** — no central orchestrator
+* **Deterministic** — same inputs → same outcome
+* **Conflict-free** — duplicate work eliminated
+* **Fault-tolerant** — automatic recovery
+* **Scalable** — multi-region, multi-agent
+
+---
+
+# 🏗️ Architecture
+
+### Agent Node (Rust)
+
+* claim generation
+* consensus computation
+* rerouting logic
+* heartbeat monitoring
+
+### Messaging Layer
+
+* FoxMQ (MQTT pub/sub)
+* Vertex-backed ordering (deterministic message stream)
+
+### Topics
+
+* `swarm/claims`
+* `swarm/heartbeats`
+* `swarm/ownership`
+* `swarm/events`
+
+### Observability
+
+* terminal dashboard (real-time)
+* optional web visualization
+
+---
+
+# 🔬 Determinism Model
+
+Each agent independently computes ownership for `(region_id, round_id)`.
+
+No coordination step exists.
+
+```text
+same claim set → same ordering → same winner
+```
+
+This guarantees convergence even under partial visibility.
+
+---
+
+# 🧪 Demo Flow
+
+1. Start 5 agents
+2. All detect the same region
+3. All submit claims simultaneously
+4. System resolves **one winner deterministically**
+5. Others reroute instantly
+
+Then:
+
+6. Kill the winner
+7. Heartbeat timeout triggers
+8. Region reopens
+9. New winner is selected automatically
+
+---
+
+# 🛠️ Build
 
 ```bash
 cargo build
 ```
 
-## Run one agent
+---
+
+# ▶️ Run Single Agent
 
 ```bash
 RUST_LOG=info ./target/debug/vertex-hack \
@@ -47,32 +202,50 @@ RUST_LOG=info ./target/debug/vertex-hack \
   --force-conflict-region 0,0
 ```
 
-## Run demo (5 agents)
+---
 
-Requires a reachable FoxMQ cluster/broker endpoint:
+# ▶️ Run Full Demo (5 Agents)
 
 ```bash
 export FOXMQ_BROKERS=127.0.0.1:1883
 export FOXMQ_USERNAME=swarm
 export FOXMQ_PASSWORD=swarm
+
 ./scripts/demo.sh
 ```
 
-## Logs to verify
+---
 
-- `claims received set`
-- `deterministic winner computed`
-- `claim won, proceeding to explore`
-- `claim lost, rerouting immediately`
-- `consistent ownership digest across agents`
-- `heartbeat timeout, marking failed`
-- `owner failed, region reopened`
+# 📊 Logs to Verify
 
-## Live Visualization (WebSocket + Canvas)
+Look for:
 
-Frontend renders backend events only (no winner simulation in UI).
+* `claims received set`
+* `deterministic winner computed`
+* `claim won, proceeding to explore`
+* `claim lost, rerouting immediately`
+* `heartbeat timeout`
+* `owner failed, region reopened`
 
-### Start bridge
+---
+
+# 🖥️ Visualization
+
+## Terminal Dashboard
+
+```bash
+cargo run --bin term-viz -- --live
+```
+
+* shows agents, claims, winner, events
+* supports commands:
+
+  * `kill a1`
+  * `kill winner`
+
+---
+
+## Web Visualization (Optional)
 
 ```bash
 cd viz
@@ -80,43 +253,29 @@ npm install
 npm start
 ```
 
-This serves UI on `http://localhost:8080` and broadcasts:
+Open:
 
-- JSON lines from `stdin` directly
-- optionally parsed events from backend logs when `VIZ_LOG_DIR` is set
+```
+http://localhost:8080
+```
 
-### Stream backend logs into UI (quick demo mode)
-
-In a second terminal:
+Stream logs:
 
 ```bash
-cd viz
 VIZ_LOG_DIR=../logs/demo npm start
 ```
 
-Then run your backend demo in another terminal:
+---
 
-```bash
-./scripts/demo.sh
-```
+# 🎯 What This Demonstrates
 
-### Terminal grid (ratatui)
+* real-time multi-agent contention
+* deterministic consensus without leaders
+* zero-duplication task allocation
+* automatic recovery under failure
 
-Same discrete grid and event overlay in the console:
+---
 
-```bash
-cargo run --bin term-viz -- --demo
-```
+# 🏁 Summary
 
-- **S** — toggle step mode (press **Space** / **n** for each tick)
-- **+** / **-** — tick interval (slow motion, default `--tick-ms 750`)
-- **K** — kill winner (during stability) or clear winner (live)
-- **R** — restart scripted demo
-- **Live stdin** (JSON lines, same as the web bridge): `cargo run --bin term-viz -- --live`
-
-### Bridge event contract
-
-- `round_update` updates food target, claim set, and winner
-- `agent_position` updates cat movement targets
-- `event` with `name="reroute"` flashes loser and animates away
-- `event` with `name="owner_invalidated"` shows re-election pulse
+> Terrasync eliminates coordination complexity by making ownership deterministic — turning distributed contention into a predictable, convergent system.
